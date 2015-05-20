@@ -56,6 +56,12 @@ filetype indent on
 set autoread
 au FileChangedShell * echo "file changed on disk"
 
+" Change leader key from odd '\' to ','
+let mapleader = ","
+
+" Then make good use of the new leader for an easy saving ;-)
+map <leader>s :w<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -188,6 +194,9 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Avoid ESC
+inoremap jj <ESC>
+
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -216,9 +225,6 @@ map <F3> :nohl <CR>
 
 " Fix syntax highlighting
 noremap <F12> <Esc>:syntax sync fromstart<CR>
-
-" Saving should be an easy step
-map <f11> :w<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings

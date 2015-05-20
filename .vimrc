@@ -146,25 +146,34 @@ set nowb
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
+" => Text, tab and indent related (PEP8)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use tabs instead of spaces
-set noexpandtab
 
-" Be smart when using tabs ;)
-set smarttab
+" Many settings are from: http://svn.python.org/projects/python/trunk/Misc/Vim/vimrc
 
-" 1 tab == 4 spaces
+" Use PEP8 conform Python style (only spaces)
+set expandtab
+set tabstop=8
+set softtabstop=4
 set shiftwidth=4
-set tabstop=4
+set autoindent
+
+" Also PEP8, but only for Python files
+au BufRead,BufNewFile *.py,*.pyw set textwidth=79
+
+" Use the below highlight group when displaying bad whitespace is desired.
+highlight BadWhitespace ctermbg=red guibg=red
+
+" Display tabs at the beginning of a line in Python mode as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+" Make trailing whitespace be flagged as bad.
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 
 " Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
+" Further reference: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+"set lbr
+"set tw=500
+"set wrap "Wrap lines
 
 
 """"""""""""""""""""""""""""""
@@ -206,7 +215,10 @@ map <C-left> <ESC>:bp<CR>
 map <F3> :nohl <CR>
 
 " Fix syntax highlighting
-noremap <F11> <Esc>:syntax sync fromstart<CR>
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+
+" Saving should be an easy step
+map <f11> :w<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -217,7 +229,7 @@ set pastetoggle=<F4>
 set showmode
 
 " For LaTeX compiling
-map <f9> :w<cr><leader>ll
+map <f9> :w<bar>!pdflatex %<cr>
 
 " Remap VIM 0 to first non-blank character
 map 0 ^

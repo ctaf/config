@@ -9,48 +9,38 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'ap/vim-css-color'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'kien/ctrlp.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto-reload vimrc
+augroup reload_vimrc " {
+        autocmd!
+            autocmd BufWritePost $MYVIMRC source $MYVIMRC
+        augroup END " }
+
 " Sets how many lines of history VIM has to remember
 set history=700
 
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
+" Show last command (after tpope's vim-sensible)
+set showcmd
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -59,12 +49,62 @@ au FileChangedShell * echo "file changed on disk"
 " Change leader key from odd '\' to ','
 let mapleader = ","
 
-" Then make good use of the new leader for an easy saving ;-)
-map <leader>s :w<cr>
+" Then make good use of the new leader for an easy saving
+" and closing of buffers ;-)
+map <leader>w :w<cr>
+map <leader>q :q<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Config for :Explorer
+let g:netrw_liststyle=3
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic setup
+let g:syntastic_check_on_open = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP setup
+if !has('python')
+    echo 'In order to use pymatcher plugin, you need +python compiled vim'
+else
+    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
+
+" Do not clear filenames cache, to improve CtrlP startup
+" You can manualy clear it by <F5>
+let g:ctrlp_clear_cache_on_exit = 0
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline setup
+set laststatus=2
+set termencoding=utf-8
+let g:airline_powerline_fonts=1
+let g:airline_theme='solarized'  "or use 'raven'
+let g:airline_exclude_preview = 0 "no additional airline in preview windows
+let g:airline#extensions#branch#enabled = 1
+
+" Got Solarized working for VIM, finally!
+set t_Co=256
+colorscheme solarized
+set background=dark
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show trailing whitespace chars
+match ErrorMsg '\s\+$'
+nnoremap <Leader>dw :%s/\s\+$//e<CRt
+
+nnoremap <Space><Space> :
+
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
@@ -73,9 +113,6 @@ set wildmenu
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
-
-"Always show current position
-set ruler
 
 " Height of the command bar
 set cmdheight=1
@@ -90,7 +127,7 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -116,17 +153,12 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Remove status line which overlaps with the screen status
-set ls=0
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
 
-colorscheme desert
-set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -148,7 +180,8 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
-set nowb
+set noswapfile
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp   " store swap files here
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -201,7 +234,7 @@ inoremap jj <ESC>
 map j gj
 map k gk
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -247,7 +280,6 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 " Remove tabline
 set showtabline=1

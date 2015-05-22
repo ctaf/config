@@ -46,6 +46,12 @@ set showcmd
 set autoread
 au FileChangedShell * echo "file changed on disk"
 
+" Avoid colon to spare your pinky ;-)
+nnoremap <Space><Space> :
+
+" Avoid ESC
+inoremap jj <ESC>
+
 " Change leader key from odd '\' to ','
 let mapleader = ","
 
@@ -101,9 +107,6 @@ set background=dark
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show trailing whitespace chars
 match ErrorMsg '\s\+$'
-nnoremap <Leader>dw :%s/\s\+$//e<CRt
-
-nnoremap <Space><Space> :
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -208,12 +211,6 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 
-" Linebreak on 500 characters
-" Further reference: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-"set lbr
-"set tw=500
-"set wrap "Wrap lines
-
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -227,9 +224,6 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Avoid ESC
-inoremap jj <ESC>
-
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -249,9 +243,10 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
-"fast buffer switching
-map <C-right> <ESC>:bn<CR>
-map <C-left> <ESC>:bp<CR>
+" Mappings for easy buffer switching
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>
 
 " Turn off highlighting of search hits
 map <F3> :nohl <CR>
@@ -262,6 +257,9 @@ noremap <F12> <Esc>:syntax sync fromstart<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Kill white space
+nnoremap <Leader>dw :%s/\s\+$//e<CRt
+
 " paste toggle
 nnoremap <F4> :set invpaste paste?<CR>
 set pastetoggle=<F4>

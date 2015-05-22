@@ -20,6 +20,7 @@ Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'sjl/gundo.vim.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -59,6 +60,12 @@ let mapleader = ","
 " and closing of buffers ;-)
 map <leader>w :w<cr>
 map <leader>q :q<cr>
+
+" Reselect text pasted just before
+map <leader>v V`]
+
+" Do a vertical split and switch to this new buffer
+nnoremap <leader>w <C-w>v<C-w>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -107,6 +114,10 @@ set background=dark
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show trailing whitespace chars
 match ErrorMsg '\s\+$'
+
+" Show line numbers relative to the one the cursor is at
+set relativenumber
+set number
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7

@@ -244,9 +244,10 @@ autocmd BufReadPost *
 set viminfo^=%
 
 " Mappings for easy buffer switching
-map gn :bn<cr>
-map gp :bp<cr>
-map gd :bd<cr>
+noremap gn :bn<cr>
+noremap gp :bp<cr>
+noremap gd :bd<cr>
+noremap gr :b#<cr>
 
 " Turn off highlighting of search hits
 map <F3> :nohl <CR>

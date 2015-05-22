@@ -1,93 +1,93 @@
-# Set up the prompt
+# Path to your oh-my-zsh installation.
+export ZSH=/home/meph/.oh-my-zsh
 
-autoload -U colors && colors
-PS1="%{$fg[cyan]%}[%n%{$reset_color%}@%m %{$fg[cyan]%}%~] %{$reset_color%}"
-RPROMPT="[%{$fg_no_bold[yellow]%}%h|%D|%T%{$reset_color%}]"
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="agnoster"
+# Default User
+DEFAULT_USER="meph"
 
-setopt histignorealldups sharehistory autocd
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-#case "$TERM" in
-#    screen*) PROMPT_COMMAND='echo -ne "\033k\033\134"'
-#esac
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-############# Set dirstack ##################
-DIRSTACKFILE="$HOME/.cache/zsh/dirs"
-if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
-  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-  [[ -d $dirstack[1] ]] && cd $dirstack[1]
-fi
-chpwd() {
-  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-}
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-DIRSTACKSIZE=10
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-setopt autopushd pushdsilent pushdtohome
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-## Extended globbing
-setopt extended_glob
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
 
-## Remove duplicate entries
-setopt pushdignoredups
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
 
-## This reverts the +/- operators.
-setopt pushdminus
-##############################################
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="mm/dd/yyyy"
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTFILE=~/.zhistory
-HISTSIZE=SAVEHIST=10000
-setopt sharehistory
-setopt extendedhistory
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Use modern completion system
-autoload -Uz compinit
-compinit
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git ubuntu colorize vi-mode)
 
-# Colors for ls
-if [[ -x "`whence -p dircolors`" ]]; then
-	eval `dircolors`
-	alias ls='ls -F --color=auto'
-else
-	alias ls='ls -F'
-fi
+# User configuration
 
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
+export PATH="/home/meph/.rbenv/plugins/ruby-build/bin:/home/meph/.rbenv/shims:/home/meph/.rbenv/bin:/home/meph/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+# export MANPATH="/usr/local/man:$MANPATH"
 
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+source $ZSH/oh-my-zsh.sh
 
-# Alias
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# ##################################################
+# Additional customization
+# ##################################################
+
+# Prevent duplicate lines from being added to history
+setopt HIST_IGNORE_DUPS
+
+# Show battery level on the right
+# RPROMPT='$(battery_level_gauge)'
+
+# ##################################################
+# Personal aliases
+# ##################################################
+
 alias ll='ls -l'
 alias la='ls -a'
 alias lt='ls -lrt'
 alias cameout='fusermount -u came'
 alias camein='sshfs xcame: came'
-
-########## Personal settings ##################
-export EDITOR=vim
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"

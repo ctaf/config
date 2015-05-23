@@ -62,10 +62,10 @@ map <leader>w :w<cr>
 map <leader>q :q<cr>
 
 " Reselect text pasted just before
-map <leader>v V`]
+" map <leader>v V`]
 
 " Do a vertical split and switch to this new buffer
-nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>v <C-w>v<C-w>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -80,6 +80,8 @@ let g:syntastic_check_on_open = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP setup
+noremap <C-p> :CtrlP /home/meph/<CR>
+
 if !has('python')
     echo 'In order to use pymatcher plugin, you need +python compiled vim'
 else

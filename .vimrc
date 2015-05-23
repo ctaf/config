@@ -106,7 +106,9 @@ set termencoding=utf-8
 let g:airline_powerline_fonts=1
 let g:airline_theme='solarized'  "or use 'raven'
 let g:airline_exclude_preview = 0 "no additional airline in preview windows
-let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#branch#enabled = 0
+" call airline#parts#define_accent('branch', 'red')
+let g:airline#extensions#branch#format = 2
 
 " Got Solarized working for VIM, finally!
 set t_Co=256
@@ -271,6 +273,9 @@ noremap <F12> <Esc>:syntax sync fromstart<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Copy buffer content into clipboard
+nnoremap <Leader>y gg"+yG''
+
 " Kill white space
 nnoremap <Leader>dw :%s/\s\+$//e<CRt
 

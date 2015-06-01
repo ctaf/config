@@ -75,6 +75,10 @@ nnoremap <leader>v <C-w>v<C-w>l
 let g:netrw_liststyle=3
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Gundo setup
+noremap <F5> :GundoToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic setup
 let g:syntastic_check_on_open = 1
 
@@ -119,12 +123,11 @@ set background=dark
 " Show trailing whitespace chars
 match ErrorMsg '\s\+$'
 
-" Show line numbers relative to the one the cursor is at
-set relativenumber
-set number
-
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
+
+" No line numbers
+set nonumber
 
 " Turn on the WiLd menu
 set wildmenu
@@ -242,6 +245,10 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
+
+" Open splits below or to the right
+set splitbelow
+set splitright
 
 " Specify the behavior when switching between buffers
 try

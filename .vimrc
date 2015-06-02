@@ -11,16 +11,17 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
-Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'Lokaltog/vim-easymotion'
 Plugin 'ap/vim-css-color'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'jlanzarotta/bufexplorer'
+"Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'sjl/gundo.vim.git'
+Bundle 'justinmk/vim-sneak'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -79,12 +80,20 @@ let g:netrw_liststyle=3
 noremap <F5> :GundoToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim-Sneak
+nmap s <Plug>Sneak_s
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic setup
 let g:syntastic_check_on_open = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fugitive setup
+noremap <leader>gw :Gwrite<bar>Gcommit<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP setup
-noremap <C-p> :CtrlP /home/meph/<CR>
+noremap <C-p> :CtrlPMRUFiles /home/meph/<CR>
 
 if !has('python')
     echo 'In order to use pymatcher plugin, you need +python compiled vim'

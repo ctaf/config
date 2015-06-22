@@ -4,17 +4,13 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
-"Plugin 'Lokaltog/vim-easymotion'
 Plugin 'ap/vim-css-color'
 Plugin 'davidhalter/jedi-vim'
-"Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
 Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'scrooloose/syntastic.git'
@@ -268,6 +264,9 @@ endtry
 
 " Special intendation mode for HTML
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
+" Line break setting for emails in mutt
+setlocal fo+=aw
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *

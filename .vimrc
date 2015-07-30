@@ -9,16 +9,16 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
-Plugin 'ap/vim-css-color'
-Plugin 'davidhalter/jedi-vim'
+"Plugin 'ap/vim-css-color'
+"Plugin 'davidhalter/jedi-vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'FelikZ/ctrlp-py-matcher'
-Plugin 'scrooloose/syntastic.git'
-Plugin 'tpope/vim-surround'
+"Plugin 'FelikZ/ctrlp-py-matcher'
+"Plugin 'scrooloose/syntastic.git'
+"Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
-Plugin 'sjl/gundo.vim.git'
+"Plugin 'sjl/gundo.vim.git'
 Bundle 'justinmk/vim-sneak'
-
+"
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -123,7 +123,6 @@ let g:airline_exclude_preview = 0 "no additional airline in preview windows
 let g:airline#extensions#branch#format = 2
 
 " Got Solarized working for VIM, finally!
-set t_Co=256
 colorscheme solarized
 set background=dark
 

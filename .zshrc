@@ -47,10 +47,11 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ubuntu colorize vi-mode)
+plugins=(git ubuntu colorize)
 
 # User configuration
 
+bindkey '^R' history-incremental-search-backward
 export PATH="/home/meph/.rbenv/plugins/ruby-build/bin:/home/meph/.rbenv/shims:/home/meph/.rbenv/bin:/home/meph/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 

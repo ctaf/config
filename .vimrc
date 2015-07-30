@@ -82,6 +82,9 @@ nmap s <Plug>Sneak_s
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic setup
 let g:syntastic_check_on_open = 1
+let g:syntastic_html_tidy_exec = 'tidy'
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fugitive setup

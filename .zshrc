@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/meph/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -7,7 +7,7 @@ export ZSH=/home/meph/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
 # Default User
-DEFAULT_USER="meph"
+DEFAULT_USER="$USER"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

@@ -18,6 +18,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'sjl/gundo.vim.git'
 Bundle 'justinmk/vim-sneak'
+Bundle 'altercation/vim-colors-solarized'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

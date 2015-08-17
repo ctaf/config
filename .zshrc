@@ -83,6 +83,11 @@ setopt HIST_IGNORE_DUPS
 # Show battery level on the right
 # RPROMPT='$(battery_level_gauge)'
 
+# Load dircolors
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
 # ##################################################
 # Personal aliases
 # ##################################################

@@ -53,6 +53,7 @@ plugins=(git ubuntu colorize)
 
 bindkey '^R' history-incremental-search-backward
 export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh

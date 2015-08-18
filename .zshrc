@@ -47,7 +47,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ubuntu colorize)
+plugins=(git debian common-aliases jsontools sudo)
 
 # User configuration
 
@@ -92,8 +92,7 @@ fi
 # Personal aliases
 # ##################################################
 
-alias ll='ls -l'
-alias la='ls -a'
-alias lt='ls -lrt'
-alias cameout='fusermount -u came'
-alias camein='sshfs xcame: came'
+# Equivalent commands in plugin 'common-aliases'
+# alias ll='ls -l'
+# alias la='ls -a'
+# alias lt='ls -lrt'

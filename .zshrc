@@ -98,3 +98,8 @@ alias la='ls -a'
 alias lt='ls -lrt'
 alias cameout='fusermount -u came'
 alias camein='sshfs xcame: came'
+
+# Machine specific config
+if [[ -e ~/.zvar ]]; then
+  source ~/.zvar
+fi

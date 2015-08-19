@@ -1,76 +1,84 @@
-background no
+background yes
 use_xft yes
-xftfont verdana:size=8
-alignment top_right
-xftalpha 0.8
-own_window yes
+xftalpha 0.6
+own_window true
 own_window_type desktop
-own_window_transparent yes
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual true
+# 0 = transparent, 255 = solid
+own_window_argb_value 160
 double_buffer yes
+update_interval 1
+
+maximum_width 200
+alignment top_right
+gap_x 10
+gap_y 10
+
+no_buffers yes
+uppercase no
+cpu_avg_samples 5
+net_avg_samples 5
+diskio_avg_samples 5
+if_up_strictness address
+
 draw_shades no
 draw_outline no
 draw_borders no
-stippled_borders 10
-border_margin 4
-border_width 1
-default_shade_color grey
-default_outline_color black
-default_color White
+draw_graph_borders no
+default_color lightgray
+default_shade_color red
+default_outline_color green
+short_units true
 use_spacer none
-no_buffers yes
-uppercase no
-color1 FFFFFF
-minimum_size 200 5
-maximum_width 300
-update_interval 2
+xftfont DejaVu Sans Mono:size=10
 
+template0 ${font Open Sans:Bold:size=10}${color dodgerblue3}\1 ${hr 2}$color${font}${voffset 1}
+template1 \1 ${alignr\ 80}${fs_bar\ \1}
+template2 ${\1 name \2}${alignr}${\1 \3 \2} %
+template3 ${if_up \1}${template0 \2}\ndown $alignr ${downspeed \1}/s\nup $alignr ${upspeed \1}/s\ntotal down$alignr${totaldown \1}\ntotal up $alignr${totalup \1}$endif
 
+#${execi 30 sudo hddtemp /dev/sda | grep '/dev/sda:' | cut -c28-29}°C
 
 TEXT
-${font Radio Space:size=30}${color1}Gryph3n
-${voffset -20}$stippled_hr
-${font Radio Space:size=8} ${voffset -20}${color Green}${font Radio Space:size=14}${time %A %d %Y}
-${font Radio Space:size=55}${time %H:%M}${font Radio Space:size=9}
+$color${font}${font Open Sans:size=44}$alignr${time %H:%M}$font$color${font Open Sans:size=15}
+$alignr${time %a}, ${time %d %b %Y}$font$color
 
-${color white}$stippled_hr
-
-${color}${font StyleBats:size=14}${font}${voffset -4}${font Verana:style=Bold:size=9}${font Verana:size=9} CORE1: ${color1}${cpubar cpu1 9,151}${font Verana:style=Bold:size=8} ${cpu cpu1}%
-
-${color}${font StyleBats:size=14}${font}${voffset -4}${font Verana:style=Bold:size=9}${font Verana:size=9} CORE2: ${color1}${cpubar cpu2 9,151}${font Verana:style=Bold:size=8} ${cpu cpu2}%
-
-${color}${font StyleBats:size=14}${font}${voffset -8}${font Verana:style=Bold:size=5} ${font Verana:size=9}VRAM: ${color1}${membar 9,151} ${font Verana:style=Bold:size=8}${memperc}%
-
-${color}${font StyleBats:size=14}${font}${voffset -8}${font Verana:style=Bold:size=5} ${font Verana:size=9}SWAP: ${color1}${swapbar 9,151} ${font Verana:style=Bold:size=8}${swap}%
-
-${color white}$stippled_hr
-
-${color white}CPU Usage         PID     CPU%   MEM%
-${color green} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
-${color white} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
-${color white} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
-${color white} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
-${color white} ${top name 5} ${top pid 5} ${top cpu 5} ${top mem 5}
-${color white} ${top name 6} ${top pid 6} ${top cpu 6} ${top mem 6}
-${color white} ${top name 7} ${top pid 7} ${top cpu 7} ${top mem 7}
-${color white}Mem Usage
-${color green} ${top_mem name 1} ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
-${color white} ${top_mem name 2} ${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
-${color white} ${top_mem name 3} ${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
-
-${color white}$stippled_hr
-
-$sysname $kernel on $machine
-
+# SYS
+${template0 SYSTEM}
+Kernel $alignr $kernel
 Uptime $alignr $uptime
-Load $alignr $loadavg
+Temperature $alignr ${acpitemp}°C
 
-Hostname $alignr $nodename
-eth0 $alignr ${addr eth0}
+# CPU
+${template0 CPU}
+$color${font}Intel i5 2500k $alignr $cpu %
+${cpugraph}
+# RAM
+${template0 RAM}
+In use $alignr $mem
+Used$alignr$memeasyfree
+Buffers $alignr $buffers
+Cache $alignr $cached
 
-Inbound $alignr ${downspeed eth0} kb/s
-${downspeedgraph eth0}
-Outbound $alignr ${upspeed eth0} kb/s
-${upspeedgraph eth0}
+# NETWORK
+${template3 eth0 ETH0}${template3 wlan0 WLAN0}
 
-$processes processes ($running_processes running)
+# TOP
+${template0 TOP}
+$color${font Open Sans:bold:size=8}CPU$font
+${template2 top 1 cpu}
+${template2 top 2 cpu}
+${template2 top 3 cpu}${voffset 5}
+$color${font Open Sans:bold:size=8}RAM$font
+${template2 top_mem 1 mem}
+${template2 top_mem 2 mem}
+${template2 top_mem 3 mem}
+
+# HDD
+${template0 HDD}
+${template1 /}
+${template1 /var}
+${template1 /home}
+
+$color${font Open Sans:bold:size=8}/dev/sda $font$alignr ${hddtemp /dev/sda}°C
+${diskiograph sda}

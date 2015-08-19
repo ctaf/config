@@ -12,9 +12,7 @@ Plugin 'bling/vim-airline'
 Plugin 'ap/vim-css-color'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'kien/ctrlp.vim'
-" Plugin 'FelikZ/ctrlp-py-matcher'
 Plugin 'scrooloose/syntastic.git'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'sjl/gundo.vim.git'
 Bundle 'justinmk/vim-sneak'
@@ -95,9 +93,7 @@ noremap <leader>gw :Gwrite<bar>Gcommit<CR>
 " CtrlP setup
 noremap <C-p> :CtrlPMRUFiles /home/meph/<CR>
 
-if !has('python')
-    echo 'In order to use pymatcher plugin, you need +python compiled vim'
-else
+if has('python')
     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 " Set delay to prevent extra search

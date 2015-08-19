@@ -43,16 +43,15 @@ HIST_STAMPS="mm/dd/yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian common-aliases jsontools sudo)
+# Don't forget that common-aliases has been customized!
+# (no interactive mode for rm, cp and mv)
+plugins=(git debian common-aliases sudo jsontools)
 
 # User configuration
 
 bindkey '^R' history-incremental-search-backward
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$HOME/.rbenv/shims:$HOME/.rbenv/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -60,18 +59,11 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# Where there is vim, there is a way.
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # ##################################################
 # Additional customization
@@ -96,3 +88,8 @@ fi
 # alias ll='ls -l'
 # alias la='ls -a'
 # alias lt='ls -lrt'
+
+# Machine specific config
+if [[ -e ~/.zvar ]]; then
+  source ~/.zvar
+fi

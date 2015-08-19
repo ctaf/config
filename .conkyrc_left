@@ -14,7 +14,7 @@ xftalpha 0.8
 
 update_interval 1
 own_window yes
-own_window_type override
+own_window_type desktop
 
 double_buffer yes
 
@@ -35,7 +35,7 @@ default_outline_color white
 minimum_size 410 10
 
 gap_x 13
-gap_y 140
+gap_y 14
 alignment top_left
 
 use_spacer none

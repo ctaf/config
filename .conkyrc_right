@@ -35,7 +35,7 @@ default_outline_color white
 minimum_size 410 10
 
 gap_x 13
-gap_y 140
+gap_y 14
 alignment top_right
 
 use_spacer none
@@ -60,10 +60,6 @@ Core 1 Usage: ${cpu cpu1}% / ${freq 1} MHz
 ${color black}${cpugraph cpu1 999999 CC0000 -t}
 ${color}Core 2 Usage: ${cpu cpu2}% / ${freq 2} MHz
 ${color black}${cpugraph cpu2 999999 CC0000 -t}
-${color}Core 3 Usage: ${cpu cpu3}% / ${freq 3} MHz
-${color black}${cpugraph cpu3 999999 CC0000 -t}
-${color}Core 4 Usage: ${cpu cpu4}% / ${freq 4} MHz
-${color black}${cpugraph cpu4 999999 CC0000 -t}
 
 ${color}Processes ${hr}
 

@@ -45,7 +45,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Don't forget that common-aliases has been customized!
 # (no interactive mode for rm, cp and mv)
-plugins=(vi-mode git debian common-aliases sudo)
+plugins=(vi-mode debian common-aliases sudo)
 
 # Load config from oh-my-zsh first
 
@@ -56,6 +56,9 @@ source $ZSH/oh-my-zsh.sh
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey '^R' history-incremental-search-backward
 
+# Cause interactive mode for rm, mv is annoying
+unalias rm
+
 # Env vars
 export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
@@ -63,13 +66,6 @@ export EDITOR='vim'
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ##################################################
-# Additional customization
-# ##################################################
 
 # Prevent duplicate lines from being added to history
 setopt HIST_IGNORE_DUPS
@@ -79,9 +75,7 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-# ##################################################
 # Personal aliases
-# ##################################################
 
 # Equivalent commands in plugin 'common-aliases'
 # alias ll='ls -l'

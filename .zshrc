@@ -45,21 +45,24 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Don't forget that common-aliases has been customized!
 # (no interactive mode for rm, cp and mv)
-plugins=(git debian common-aliases sudo jsontools)
+plugins=(vi-mode git debian common-aliases sudo)
 
-# User configuration
-
-bindkey '^R' history-incremental-search-backward
-export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-# export MANPATH="/usr/local/man:$MANPATH"
+# Load config from oh-my-zsh first
 
 source $ZSH/oh-my-zsh.sh
 
+# Re-bind keys for vi-mode
+
+bindkey -M viins 'jj' vi-cmd-mode
+bindkey '^R' history-incremental-search-backward
+
+# Env vars
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+export EDITOR='vim'
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Where there is vim, there is a way.
-export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -70,9 +73,6 @@ export EDITOR='vim'
 
 # Prevent duplicate lines from being added to history
 setopt HIST_IGNORE_DUPS
-
-# Show battery level on the right
-# RPROMPT='$(battery_level_gauge)'
 
 # Load dircolors
 if [ -x /usr/bin/dircolors ]; then

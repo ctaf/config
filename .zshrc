@@ -45,7 +45,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Don't forget that common-aliases has been customized!
 # (no interactive mode for rm, cp and mv)
-plugins=(vi-mode debian common-aliases sudo)
+plugins=(vi-mode git git-flow debian common-aliases sudo)
 
 # Load config from oh-my-zsh first
 

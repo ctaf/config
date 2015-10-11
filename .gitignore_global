@@ -1,0 +1,12 @@
+# Intellij
+.idea/
+*.iml
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs
+hs_err_pid*

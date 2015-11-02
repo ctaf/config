@@ -58,10 +58,7 @@ map <leader>w :w<cr>
 map <leader>q :q<cr>
 
 " Reselect text pasted just before
-" map <leader>v V`]
-
-" Do a vertical split and switch to this new buffer
-nnoremap <leader>v <C-w>v<C-w>l
+map <leader>v V`]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -266,7 +263,10 @@ endtry
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
 " Line break setting for emails in mutt
-setlocal fo+=aw
+" setlocal fo+=aw
+
+" Line break setting
+setlocal fo+=t
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
@@ -318,6 +318,3 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 
 " Remove tabline
 set showtabline=1
-
-" Saved macros
-let @d = "Oimport DomainTools as dt"

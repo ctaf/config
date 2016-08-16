@@ -45,23 +45,17 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Don't forget that common-aliases has been customized!
 # (no interactive mode for rm, cp and mv)
-plugins=(vi-mode git git-flow debian common-aliases sudo)
+plugins=(git debian common-aliases sudo)
 
 # Load config from oh-my-zsh first
 
 source $ZSH/oh-my-zsh.sh
-
-# Re-bind keys for vi-mode
-
-bindkey -M viins 'jj' vi-cmd-mode
-bindkey '^R' history-incremental-search-backward
 
 # Cause interactive mode for rm, mv is annoying
 unalias rm
 
 # Env vars
 export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 export EDITOR='vim'
 
 # You may need to manually set your language environment

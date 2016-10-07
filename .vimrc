@@ -12,11 +12,13 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ap/vim-css-color'
 Plugin 'Shougo/unite.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'mtth/scratch.vim'
+" Plugin 'mtth/scratch.vim'
 Plugin 'klen/python-mode'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-commentary'
-Bundle 'justinmk/vim-sneak'
+Plugin 'sukima/xmledit'
+Plugin 'Valloric/YouCompleteMe'
+" Bundle 'justinmk/vim-sneak'
 " Bundle 'kassio/neoterm'
 Bundle 'altercation/vim-colors-solarized'
 " Plugin 'sjl/gundo.vim.git'
@@ -97,9 +99,6 @@ set formatoptions=cq
 set wrapmargin=0
 set colorcolumn=85
 
-" Special intendation mode for HTML
-" autocmd FileType html setlocal shiftwidth=2 tabstop=2
-
 " Save on losing focus
 au FocusLost * :wa
 
@@ -159,13 +158,14 @@ highlight BadWhitespace ctermbg=red guibg=red
 " Display tabs at the beginning of a line in Python mode as bad.
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
-au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.py,*.pyw,*.html,*.php,*.js match BadWhitespace /\s\+$/
 
 " Intendation for web development
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
+    \ set foldmethod=indent
 
 
 """"""""""""""""""""""""""""""
@@ -229,7 +229,7 @@ map <F2> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-Sneak
-nmap s <Plug>Sneak_s
+" nmap s <Plug>Sneak_s
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic setup
@@ -244,27 +244,34 @@ let g:syntastic_warning_symbol = '!'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP setup
-nnoremap <Leader>o :CtrlP<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
-noremap <Leader>f :CtrlPMRUFiles /home/$USER/<CR>
+" nnoremap <Leader>o :CtrlP<CR>
+" nnoremap <Leader>b :CtrlPBuffer<CR>
+" noremap <Leader>f :CtrlPMRUFiles /home/$USER/<CR>
 
-let g:ctrlp_working_path_mode = 'a'
+" let g:ctrlp_working_path_mode = 'a'
 
-if has('python')
-    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-endif
-" Set delay to prevent extra search
-let g:ctrlp_lazy_update = 350
+" if has('python')
+"     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" endif
+" " Set delay to prevent extra search
+" let g:ctrlp_lazy_update = 350
 
-" Do not clear filenames cache, to improve CtrlP startup
-" You can manualy clear it by <F5>
-let g:ctrlp_clear_cache_on_exit = 0
+" " Do not clear filenames cache, to improve CtrlP startup
+" " You can manualy clear it by <F5>
+" let g:ctrlp_clear_cache_on_exit = 0
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ }
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+"   \ 'file': '\v\.(exe|so|dll)$',
+"   \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YCM setup
+
+let g:ycm_autoclose_preview_window_after_completion=1
+noremap <f9>  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pymode setup
 
@@ -353,18 +360,10 @@ set pastetoggle=<F4>
 set showmode
 
 " For LaTeX compiling
-map <f9> :w<bar>!pdflatex %<cr>
+" map <f9> :w<bar>!pdflatex %<cr>
 
 " For LaTeX compiling
 map <f10> :!scp % root@192.168.110.163:/
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-" func! DeleteTrailingWS()
-"   exe "normal mz"
-"   %s/\s\+$//ge
-"   exe "normal `z"
-" endfunc
-" autocmd BufWrite *.py :call DeleteTrailingWS()

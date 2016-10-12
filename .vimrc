@@ -40,9 +40,6 @@ match ErrorMsg '\s\+$'
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
-" No line numbers
-set nonumber
-
 " A buffer becomes hidden when it is abandoned
 set hid
 
@@ -54,12 +51,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-" Auto-reload vimrc
-augroup reload_vimrc " {
-        autocmd!
-            autocmd BufWritePost $MYVIMRC source $MYVIMRC
-        augroup END " }
 
 " Show last command (after tpope's vim-sensible)
 set showcmd
@@ -269,8 +260,8 @@ let g:syntastic_warning_symbol = '!'
 " YCM setup
 
 let g:ycm_autoclose_preview_window_after_completion=1
-noremap <f9>  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
+noremap <leader>g  :YcmCompleter GoTo<CR>
+noremap <leader>k  :YcmCompleter GetDoc<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pymode setup
@@ -361,9 +352,7 @@ set showmode
 
 " For LaTeX compiling
 " map <f9> :w<bar>!pdflatex %<cr>
-
-" For LaTeX compiling
-map <f10> :!scp % root@192.168.110.163:/
+" map <f10> :!scp % root@192.168.110.163:/
 
 " Remap VIM 0 to first non-blank character
 map 0 ^

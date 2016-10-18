@@ -6,20 +6,19 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-" Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ap/vim-css-color'
 Plugin 'Shougo/unite.vim'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'mtth/scratch.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
 Plugin 'klen/python-mode'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-commentary'
 Plugin 'sukima/xmledit'
 Plugin 'Valloric/YouCompleteMe'
-" Bundle 'justinmk/vim-sneak'
-" Bundle 'kassio/neoterm'
 Bundle 'altercation/vim-colors-solarized'
 " Plugin 'sjl/gundo.vim.git'
 " Plugin 'davidhalter/jedi-vim'
@@ -293,6 +292,17 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 nnoremap <space>s :Unite -quick-match buffer<cr>
 nnoremap <space>d :Unite -start-insert buffer<cr>
 nnoremap <space>f :Unite file<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar setup
+nmap <F8> :TagbarToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Easytags setup
+
+let g:easytags_auto_highlight = 0
+let g:easytags_by_filetype = '~/.vimtags'
+let g:easytags_async = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings

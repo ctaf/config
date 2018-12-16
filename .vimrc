@@ -12,7 +12,6 @@ Plugin 'ap/vim-css-color'
 Plugin 'Shougo/unite.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-commentary'
@@ -214,30 +213,6 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 let g:sneak#s_next = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic setup
-let g:syntastic_check_on_open = 1
-let g:syntastic_html_tidy_exec = 'tidy'
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '!'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YCM setup
-
-let g:ycm_autoclose_preview_window_after_completion=1
-noremap <leader>g  :YcmCompleter GoTo<CR>
-noremap <leader>k  :YcmCompleter GetDoc<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pymode setup
-
-let g:pymode_lint = 1
-let g:pymode_trim_whitespaces = 0
-let g:pymode_lint_checker = "pyflakes,pylint,pep8"
-let g:pymode_lint_ignore = "E401,E501,E701"
-let g:pymode_lint_on_write = 0
-let g:pymode_rope = 0
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline setup
 
 let g:airline_powerline_fonts=1
@@ -273,16 +248,6 @@ let g:ale_fixers = {
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
 noremap <C-a> :ALENext<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ack setup
-let g:ack_autoclose = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Easytags setup
-
-let g:easytags_auto_highlight = 0
-let g:easytags_by_filetype = '~/.vimtags'
-let g:easytags_async = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -326,9 +291,6 @@ map <leader>v V`]
 " Copy visual selection into clipboard
 noremap <Leader>y "*y
 
-" Read vimrc
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
 " Kill white space
 nnoremap <Leader>dw :%s/\s\+$//e<CR>
 
@@ -342,10 +304,6 @@ nnoremap ;; g;
 nnoremap <F4> :set invpaste paste?<CR>
 set pastetoggle=<F4>
 set showmode
-
-" For LaTeX compiling
-" map <f9> :w<bar>!pdflatex %<cr>
-" map <f10> :!scp % root@192.168.110.163:/
 
 " Remap VIM 0 to first non-blank character
 map 0 ^

@@ -14,21 +14,20 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'majutsushi/tagbar'
-Plugin 'klen/python-mode'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-commentary'
 Plugin 'w0rp/ale'
-Plugin 'Valloric/YouCompleteMe'
 Bundle 'lifepillar/vim-solarized8'
-Plugin 'ternjs/tern_for_vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'justinmk/vim-sneak'
-" Plugin 'mileszs/ack.vim'
+Plugin 'Shougo/deoplete.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
+
+let g:deoplete#enable_at_startup = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

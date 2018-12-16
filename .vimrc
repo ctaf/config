@@ -118,10 +118,11 @@ set mouse=a
 " Enable syntax highlighting
 syntax enable
 
-" Got Solarized working for VIM, finally!
-set t_Co=256
-colorscheme solarized
-set background=dark
+" Termtrans=1 to avoid overlap with colors from gnome terminal
+" set t_Co=256
+let g:solarized_termtrans=1
+set background=light
+colorscheme solarized8
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo

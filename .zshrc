@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="af-magic"
 # Default User
 DEFAULT_USER="$USER"
 
@@ -45,7 +45,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Don't forget that common-aliases has been customized!
 # (no interactive mode for rm, cp and mv)
-plugins=(git debian common-aliases sudo)
+plugins=(git debian common-aliases sudo mercurial)
 
 # Load config from oh-my-zsh first
 
@@ -57,6 +57,10 @@ unalias rm
 # Env vars
 export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 export EDITOR='vim'
+
+# NPM global packagages
+NPM_GLOBALS=/home/ptaf/.npm-global/bin
+PATH=$NPM_GLOBALS:$PATH
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

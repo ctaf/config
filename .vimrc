@@ -17,11 +17,13 @@ Plugin 'majutsushi/tagbar'
 Plugin 'klen/python-mode'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-commentary'
-Plugin 'sukima/xmledit'
+Plugin 'w0rp/ale'
 Plugin 'Valloric/YouCompleteMe'
-Bundle 'altercation/vim-colors-solarized'
-" Plugin 'sjl/gundo.vim.git'
-" Plugin 'davidhalter/jedi-vim'
+Bundle 'lifepillar/vim-solarized8'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'justinmk/vim-sneak'
+" Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -229,33 +231,6 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '!'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fugitive setup
-" noremap <leader>gw :Gwrite<bar>Gcommit<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP setup
-" nnoremap <Leader>o :CtrlP<CR>
-" nnoremap <Leader>b :CtrlPBuffer<CR>
-" noremap <Leader>f :CtrlPMRUFiles /home/$USER/<CR>
-
-" let g:ctrlp_working_path_mode = 'a'
-
-" if has('python')
-"     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-" endif
-" " Set delay to prevent extra search
-" let g:ctrlp_lazy_update = 350
-
-" " Do not clear filenames cache, to improve CtrlP startup
-" " You can manualy clear it by <F5>
-" let g:ctrlp_clear_cache_on_exit = 0
-
-" set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-"   \ 'file': '\v\.(exe|so|dll)$',
-"   \ }
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YCM setup
 
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -291,12 +266,25 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 
 nnoremap <space>s :Unite -quick-match buffer<cr>
 nnoremap <space>d :Unite -start-insert buffer<cr>
-nnoremap <space>f :Unite file<cr>
+nnoremap <space>f :Unite -start-insert file_rec<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar setup
 nmap <F8> :TagbarToggle<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ale setup
+let g:ale_fixers = {
+\   'javascript': ['standard'],
+\   'python': ['flake8', 'pylint'],
+\}
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+noremap <C-a> :ALENext<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ack setup
+let g:ack_autoclose = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easytags setup
 

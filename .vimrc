@@ -35,6 +35,9 @@ filetype plugin indent on    " required
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Numbering
+set nu
+
 " Show trailing whitespace chars
 match ErrorMsg '\s\+$'
 
@@ -108,6 +111,7 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
+set mouse=a
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -153,11 +157,9 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw,*.html,*.php,*.js match BadWhitespace /\s\+$/
 
 " Intendation for web development
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
-    \ set foldmethod=indent
+autocmd Filetype html setlocal ts=2 sw=2 foldmethod=indent
+autocmd Filetype scss,css,sass setlocal ts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sw=2
 
 
 """"""""""""""""""""""""""""""
@@ -343,6 +345,9 @@ nnoremap <Leader>dw :%s/\s\+$//e<CR>
 " Folding
 nnoremap <space> za
 
+" Last edit location
+nnoremap ;; g;
+
 " paste toggle
 nnoremap <F4> :set invpaste paste?<CR>
 set pastetoggle=<F4>
@@ -354,3 +359,6 @@ set showmode
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %

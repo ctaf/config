@@ -203,28 +203,16 @@ autocmd BufReadPost *
 set viminfo^=%
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Neoterm setup
-" if has("nvim")
-"     autocmd TermOpen * setlocal statusline=%{b:term_title} | let w:airline_disabled = 1
-"     let g:neoterm_position = "horizontal"
-"     let g:neoterm_size = 8
-"     let g:neoterm_autoinsert = 1
-"     tnoremap <Esc> <C-\><C-n>
-    " tnoremap <A-h> <C-\><C-n><C-w>h
-    " tnoremap <A-j> <C-\><C-n><C-w>j
-    " tnoremap <A-k> <C-\><C-n><C-w>k
-    " tnoremap <A-l> <C-\><C-n><C-w>l
-" endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree
 let NERDTreeChDirMode=2
 map <F2> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-Sneak
 " nmap s <Plug>Sneak_s
+let g:sneak#s_next = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic setup
@@ -243,8 +231,10 @@ noremap <leader>k  :YcmCompleter GetDoc<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pymode setup
 
+let g:pymode_lint = 1
 let g:pymode_trim_whitespaces = 0
-let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_checker = "pyflakes,pylint,pep8"
+let g:pymode_lint_ignore = "E401,E501,E701"
 let g:pymode_lint_on_write = 0
 let g:pymode_rope = 0
 

@@ -93,7 +93,6 @@ set gdefault
 set textwidth=0
 set formatoptions=cq
 set wrapmargin=0
-set colorcolumn=85
 
 " Save on losing focus
 au FocusLost * :wa
@@ -271,12 +270,6 @@ noremap gn :bn<cr>
 noremap gp :bp<cr>
 noremap gd :bd<cr>
 noremap gr :b#<cr>
-
-" Mappings for easy buffer switching
-nnoremap <C-h> <C-w><Left>
-nnoremap <C-j> <C-w><Down>
-nnoremap <C-k> <C-w><Up>
-nnoremap <C-l> <C-w><Right>
 
 " Turn off highlighting of search hits
 map <F3> :nohl <CR>

@@ -21,6 +21,8 @@ Plugin 'mhinz/vim-signify'
 Plugin 'justinmk/vim-sneak'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'xolox/vim-easytags'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -256,6 +258,10 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
 noremap <C-a> :ALENext<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ack setup
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

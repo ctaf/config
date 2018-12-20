@@ -20,6 +20,7 @@ Bundle 'lifepillar/vim-solarized8'
 Plugin 'mhinz/vim-signify'
 Plugin 'justinmk/vim-sneak'
 Plugin 'Shougo/deoplete.nvim'
+Plugin 'xolox/vim-easytags'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -227,6 +228,12 @@ let g:airline#extensions#tabline#excludes = ['term:']
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_inactive_collapse=0
 let g:airline#extensions#tabline#buffer_min_count = 2
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Easytags setup
+let g:easytags_auto_highlight = 0
+let g:easytags_by_filetype = '~/.vimtags'
+let g:easytags_async = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Unite setup

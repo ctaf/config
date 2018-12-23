@@ -1,0 +1,22 @@
+[user]
+	name = Philip Taferner
+	email = p.taferner@commend.com
+[push]
+	default = simple
+[fetch]
+    prune = true
+[color]
+	ui = auto
+[core]
+	autocrlf = input
+[alias]
+	sl = log --oneline --decorate
+	gl = log --oneline --decorate --graph --all --pretty=\"format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s\"
+	uncommit = reset --soft HEAD^
+	unstage = reset
+    unchange = checkout --
+	tags = tag --sort=-v:refname
+[log]
+	date = relative
+[format]
+	pretty = format:%C(auto,yellow)%h %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(12,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D

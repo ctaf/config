@@ -45,7 +45,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Don't forget that common-aliases has been customized!
 # (no interactive mode for rm, cp and mv)
-plugins=(git debian common-aliases sudo mercurial)
+plugins=(git debian common-aliases sudo tmux)
 
 # Load config from oh-my-zsh first
 

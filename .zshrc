@@ -75,6 +75,11 @@ fi
 
 # Personal aliases
 
+alias df='df -h'
+alias du='du -cksh'
+
+alias -g G='| grep'
+
 # Equivalent commands in plugin 'common-aliases'
 # alias ll='ls -l'
 # alias la='ls -a'

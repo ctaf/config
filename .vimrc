@@ -66,9 +66,6 @@ au FileChangedShell * echo "file changed on disk"
 " Remove tabline
 set showtabline=1
 
-" Highlight current line
-set cursorline
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Searching
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

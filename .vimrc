@@ -9,7 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ap/vim-css-color'
-Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/denite.nvim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'xolox/vim-misc'
 Plugin 'majutsushi/tagbar'
@@ -22,7 +22,6 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'xolox/vim-easytags'
 Plugin 'tpope/vim-fugitive'
-Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -234,11 +233,16 @@ let g:easytags_by_filetype = '~/.vimtags'
 let g:easytags_async = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Unite setup
+" Denite setup
 
-nnoremap <space>s :Unite -quick-match buffer<cr>
-nnoremap <space>d :Unite -start-insert buffer<cr>
-nnoremap <space>f :Unite -start-insert file_rec<cr>
+" nnoremap <space>s :Unite -quick-match buffer<cr>
+nnoremap <space>d :Denite buffer<cr>
+nnoremap <space>f :Denite file/rec<cr>
+nnoremap <space>a :Denite grep<cr>
+nnoremap <leader>f :<C-u>DeniteCursorWord grep:.<CR>
+vnoremap <leader>f y:Denite -input=<C-r>" grep<CR>
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar setup
@@ -254,10 +258,6 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
 noremap <C-a> :ALENext<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ack setup
-cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

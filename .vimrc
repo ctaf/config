@@ -229,8 +229,9 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Easytags setup
 let g:easytags_auto_highlight = 0
-let g:easytags_by_filetype = '~/.vimtags'
 let g:easytags_async = 1
+set tags=vimtags;/
+let g:easytags_dynamic_files = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Denite setup
@@ -241,8 +242,18 @@ nnoremap <space>f :Denite file/rec<cr>
 nnoremap <space>a :Denite grep<cr>
 nnoremap <leader>f :<C-u>DeniteCursorWord grep:.<CR>
 vnoremap <leader>f y:Denite -input=<C-r>" grep<CR>
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map(
+	      \ 'insert',
+	      \ '<Down>',
+	      \ '<denite:move_to_next_line>',
+	      \ 'noremap'
+	      \)
+	call denite#custom#map(
+	      \ 'insert',
+	      \ '<Up>',
+	      \ '<denite:move_to_previous_line>',
+	      \ 'noremap'
+	      \)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar setup
@@ -251,11 +262,10 @@ nmap <F8> :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ale setup
 let g:ale_fixers = {
-\   'javascript': ['standard'],
+\   'javascript': ['prettier', 'eslint'],
 \   'python': ['flake8', 'pylint'],
 \}
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 noremap <C-a> :ALENext<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -77,7 +77,8 @@ fi
 
 alias df='df -h'
 alias du='du -cksh'
-
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
 alias -g G='| grep'
 
 # Equivalent commands in plugin 'common-aliases'

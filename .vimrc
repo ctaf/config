@@ -20,6 +20,8 @@ Bundle 'lifepillar/vim-solarized8'
 Plugin 'mhinz/vim-signify'
 Plugin 'justinmk/vim-sneak'
 Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'xolox/vim-easytags'
 Plugin 'tpope/vim-fugitive'
 

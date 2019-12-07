@@ -90,3 +90,8 @@ alias -g G='| grep'
 if [[ -e ~/.zvar ]]; then
   source ~/.zvar
 fi
+
+unset npm_config_prefix
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
